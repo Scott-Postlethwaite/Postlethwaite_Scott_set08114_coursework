@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Rainy Day Sessions</string>
+    <string name="title_activity_maps">Rainy Day Sessions</string>
+    <string name="default_info_title">Default Location</string>
+    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
+    <string name="option_get_place">Get place</string>
+    <string name="pick_place">Choose a place</string>
+    <string name="unit_text">Unit 23 is the largest skatepark in Scotland featuring two halls catering to every discipline of rider. \nThe first hall contains an 8-10ft deep bowl, a 5ft jump box and a small A frame. \nThe second hall contains the rhythm section which is a series of 4 jump boxes separated by a vert wall. \nIt also contains a new street section containing rails, banks and ledges. \nThis is a great park for intermediate to advanced riders however the size of the ramps makes it intimidating to beginners.</string>
+    <string name="park">Park Riding: </string>
+    <string name="street">Street Riding: </string>
+    <string name="beginner">For Beginners: </string>
+    <string name="advanced">For Advanced: </string>
+    <string name="unit">Unit 23</string>
+    <string name="zone">Zone 74</string>
+    <string name="zone_text">Zone 74, formerly known as EK Park, is a skatepark in East Kilbride which caters to all styles of riding. \nThe park has two distinct sections: The street section and the park section. \nThe street section consists of banks, ledges and a couple of rails. \nThe park section has three box jumps varying in size from the 3ft small box to the 6ft big box. \nThis variety makes the park great for both beginners and advanced riders.</string>
+    <string name="tx">Transition eXtreme</string>
+    <string name="tx_text">Transition Extreme, or TX as it is more commonly known, is the largest skatepark north of the forth.\nIt has a lot of variety containing a large rhythm section, a street section with a variety of unique obstacles and a bowl.\n There are enough low to the ground and fly out features to keep beginners happy while advanced riders will enjoy the larger features in the park.</string>
+    <string name="trans">Transgression</string>
+    <string name="trans_text">Transgression is the smallest indoor skatepark in Scotland.\nHoused in Ocean Terminal this skatepark consists of a bank to bank, a 3 to 4ft deep bowl and two 3 to 4ft box jumps.\nThese box jumps are simply too small for intermediate to advanced riders. The bowl is much the same. The only saving grace of this skatepark is the fairly standard bank to bank as they have several rails and ledges that can be set up.\nThis park is great for beginners and for an hour of street riding but do not expect much from the box jumps. </string>
+    <string name="factory">The Factory</string>
+    <string name="factory_text">The Factory was the first indoor skatepark in the UK located in Dundee.\nThe Factory offers a lot of variety with two large box jumps, a spine, a bowl and a street section.\nBeginners will enjoy the small ramps and fly outs on display while more advanced riders will like the larger features on show.</string>
+    <string name="shred">Shred Sketepark</string>
+    <string name="shred_text">Shred Skatepark is a medium sized skatepark in Ayr.\nThe park contains a lot of variety with a bank based street section with a plethora of rails and ledges for you to put your pegs on, two large box jumps and a spine enclosed in quarter pipes.\nThe park features are all over 4ft making them a tad intimidating for beginners but the amount of variety and size of the box jumps make this a great park for advanced riders.</string>
+    <string name="ryze">Ryze and Roll</string>
+    <string name="ryze_text">Ryze and Roll is the previous Transgression Skateparks box section.\nIt is equipped with a 5ft Resi box, spine and table top box jump as well as a 6 to 7ft step up box.\nThis park is purely set up for park riding with nothing under 5ft, no rails or ledges.\nThis also makes the park inaccessible to beginners\nBut if it is park riding you want Ryze and Roll has some of the best box jumps in Scotland.</string>
+    <string name="directions">Get Directions</string>
+    <string name="website">Go To Website</string>
+    <string name="insta">Go To Instagram</string>
+    <string name="contact">Contact Me</string>
+</resources>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.currentplacedetailsonmap.ryzeActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="#9bbff4">
+
+            <ImageView
+                android:id="@+id/ryze_logo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ryze_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ryze"
+                android:textSize="25dp"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/unit"
+            android:layout_width="wrap_content"
+            android:layout_height="320px"
+            android:src="@drawable/ryze_pano" />
+
+        <TextView
+            android:id="@+id/distanceId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#0839dc"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50px"
+                android:text="@string/park"
+                android:textColor="#000000"/>
+
+            <ImageView
+                android:id="@+id/park"
+                android:layout_width="200px"
+                android:layout_height="50px"
+                android:src="@drawable/fourstar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50px"
+                android:text="@string/street"
+                android:textColor="#000000"/>
+
+            <ImageView
+                android:id="@+id/street"
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:src="@drawable/onestar" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50px"
+                android:text="@string/beginner"
+                android:textColor="#000000"/>
+
+            <ImageView
+                android:id="@+id/beginner"
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:src="@drawable/onestar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50px"
+                android:text="@string/advanced"
+                android:textColor="#000000"/>
+
+            <ImageView
+                android:id="@+id/advanced"
+                android:layout_width="200px"
+                android:layout_height="50px"
+                android:src="@drawable/fourstar" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ryze_text"
+            android:textColor="#000000"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/directions"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="@string/directions"
+                android:backgroundTint="#9bbff4"
+                android:textColor="#ffffff"/>
+
+            <Button
+                android:id="@+id/website"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="@string/website"
+                android:backgroundTint="#9bbff4"
+                android:textColor="#ffffff"/>
+
+            <Button
+                android:id="@+id/insta"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="@string/insta"
+                android:backgroundTint="#9bbff4"
+                android:textColor="#ffffff"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

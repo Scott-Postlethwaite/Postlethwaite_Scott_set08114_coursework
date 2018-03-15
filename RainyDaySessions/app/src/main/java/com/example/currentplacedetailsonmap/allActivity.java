@@ -11,9 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.GeoDataClient;
-import com.google.android.gms.location.places.PlaceDetectionClient;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -34,9 +31,6 @@ public class allActivity extends AppCompatActivity
     private static final String TAG = allActivity.class.getSimpleName();
     private GoogleMap gMap;
     private CameraPosition Camera;
-
-    private GeoDataClient GeoDataClient;
-    private PlaceDetectionClient placeDetectionClient;
 
     private FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -66,25 +60,15 @@ public class allActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             Camera = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
 
-        // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps);
 
-        // Construct a GeoDataClient.
-        GeoDataClient = Places.getGeoDataClient(this, null);
-
-        // Construct a PlaceDetectionClient.
-        placeDetectionClient = Places.getPlaceDetectionClient(this, null);
-
-        // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -130,13 +114,10 @@ public class allActivity extends AppCompatActivity
         LatLng tx = new LatLng(57.154086, -2.081484);
         TX = map.addMarker(new MarkerOptions().position(tx).title("Transition eXtreme Skatepark"));
 
-        // Prompt the user for permission.
         getLocationPermission();
 
-        // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
 
-        // Get the current location of the device and set the position of the map.
         getDeviceLocation();
     }
 
@@ -148,7 +129,7 @@ public class allActivity extends AppCompatActivity
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful()) {
-                            // Set the map's camera position to the current location of the device.
+                            // Set the map's camera position to the handset's location.
                             lastKnownLocation = task.getResult();
                             gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(lastKnownLocation.getLatitude(),
@@ -169,7 +150,6 @@ public class allActivity extends AppCompatActivity
     }
 
     private void getLocationPermission() {
- //request permission to use location services
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -188,7 +168,6 @@ public class allActivity extends AppCompatActivity
         mLocationPermissionGranted = false;
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true;
@@ -231,8 +210,6 @@ public class allActivity extends AppCompatActivity
             float distance = (locationA.distanceTo(locationB)/1000);
             String unit_distance = String.valueOf(distance);
 
-            Log.d("Distance", "Distance = " + unit_distance + "km");
-
             Intent unitWindow = new Intent(allActivity.this, unitActivity.class);
             unitWindow.putExtra("unitDistance", unit_distance);
             startActivity(unitWindow);
@@ -252,8 +229,6 @@ public class allActivity extends AppCompatActivity
 
             float distance = (locationA.distanceTo(locationB)/1000);
             String zone_distance = String.valueOf(distance);
-
-            Log.d("Distance", "Distance = " + zone_distance + "km");
 
             Intent zoneWindow = new Intent(allActivity.this, ZoneActivity.class);
             zoneWindow.putExtra("zoneDistance", zone_distance);
@@ -276,8 +251,6 @@ public class allActivity extends AppCompatActivity
             float distance = (locationA.distanceTo(locationB)/1000);
             String ryze_distance = String.valueOf(distance);
 
-            Log.d("Distance", "Distance = " + ryze_distance + "km");
-
             Intent ryzeWindow = new Intent(allActivity.this, ryzeActivity.class);
             ryzeWindow.putExtra("ryzeDistance", ryze_distance);
             startActivity(ryzeWindow);
@@ -294,8 +267,6 @@ public class allActivity extends AppCompatActivity
 
             float distance = (locationA.distanceTo(locationB)/1000);
             String trans_distance = String.valueOf(distance);
-
-            Log.d("Distance", "Distance = " + trans_distance + "km");
 
             Intent transWindow = new Intent(allActivity.this, transActivity.class);
             transWindow.putExtra("transDistance", trans_distance);
@@ -315,8 +286,6 @@ public class allActivity extends AppCompatActivity
             float distance = (locationA.distanceTo(locationB)/1000);
             String shred_distance = String.valueOf(distance);
 
-            Log.d("Distance", "Distance = " + shred_distance + "km");
-
             Intent shredWindow = new Intent(allActivity.this, shredActivity.class);
             shredWindow.putExtra("shredDistance", shred_distance);
             startActivity(shredWindow);
@@ -332,8 +301,6 @@ public class allActivity extends AppCompatActivity
 
             float distance = (locationA.distanceTo(locationB)/1000);
             String tx_distance = String.valueOf(distance);
-
-            Log.d("Distance", "Distance = " + tx_distance + "km");
 
             Intent txWindow = new Intent(allActivity.this, txActivity.class);
             txWindow.putExtra("txDistance", tx_distance);
@@ -352,8 +319,6 @@ public class allActivity extends AppCompatActivity
 
             float distance = (locationA.distanceTo(locationB)/1000);
             String factory_distance = String.valueOf(distance);
-
-            Log.d("Distance", "Distance = " + factory_distance + "km");
 
             Intent factoryWindow = new Intent(allActivity.this, factoryActivity.class);
             factoryWindow.putExtra("factoryDistance", factory_distance);

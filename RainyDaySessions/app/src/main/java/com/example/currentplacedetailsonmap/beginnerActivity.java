@@ -1,6 +1,5 @@
 package com.example.currentplacedetailsonmap;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -8,16 +7,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.GeoDataClient;
-import com.google.android.gms.location.places.PlaceDetectionClient;
-import com.google.android.gms.location.places.PlaceLikelihood;
-import com.google.android.gms.location.places.PlaceLikelihoodBufferResponse;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -37,11 +30,6 @@ public class beginnerActivity extends AppCompatActivity
     private GoogleMap gMap;
     private CameraPosition Camera;
 
-    // The entry points to the Places API.
-    private GeoDataClient GeoDataClient;
-    private PlaceDetectionClient placeDetectionClient;
-
-    // The entry point to the Fused Location Provider.
     private FusedLocationProviderClient fusedLocationProviderClient;
 
     // A default location (Colinton road) and default zoom to use when location permission is
@@ -51,11 +39,8 @@ public class beginnerActivity extends AppCompatActivity
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted;
 
-    // The geographical location where the device is currently located. That is, the last-known
-    // location retrieved by the Fused Location Provider.
     private Location lastKnownLocation;
 
-    // Keys for storing activity state.
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
 
@@ -71,25 +56,15 @@ public class beginnerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
             lastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             Camera = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
 
-        // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps);
 
-        // Construct a GeoDataClient.
-        GeoDataClient = Places.getGeoDataClient(this, null);
-
-        // Construct a PlaceDetectionClient.
-        placeDetectionClient = Places.getPlaceDetectionClient(this, null);
-
-        // Construct a FusedLocationProviderClient.
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        // Build the map.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -126,24 +101,14 @@ public class beginnerActivity extends AppCompatActivity
         LatLng tx = new LatLng(57.154086, -2.081484);
         TX = map.addMarker(new MarkerOptions().position(tx).title("Transition eXtreme Skatepark"));
 
-        // Use a custom info window adapter to handle multiple lines of text in the
-        // info window contents.
-
-        // Prompt the user for permission.
         getLocationPermission();
 
-        // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
 
-        // Get the current location of the device and set the position of the map.
         getDeviceLocation();
     }
 
     private void getDeviceLocation() {
-        /*
-         * Get the best and most recent location of the device, which may be null in rare
-         * cases when a location is not available.
-         */
         try {
             if (mLocationPermissionGranted) {
                 Task<Location> locationResult = fusedLocationProviderClient.getLastLocation();
@@ -151,7 +116,6 @@ public class beginnerActivity extends AppCompatActivity
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful()) {
-                            // Set the map's camera position to the current location of the device.
                             lastKnownLocation = task.getResult();
                             gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(lastKnownLocation.getLatitude(),
@@ -172,11 +136,6 @@ public class beginnerActivity extends AppCompatActivity
     }
 
     private void getLocationPermission() {
-        /*
-         * Request location permission, so that we can get the location of the
-         * device. The result of the permission request is handled by a callback,
-         * onRequestPermissionsResult.
-         */
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
@@ -195,7 +154,6 @@ public class beginnerActivity extends AppCompatActivity
         mLocationPermissionGranted = false;
         switch (requestCode) {
             case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true;
@@ -241,8 +199,6 @@ public class beginnerActivity extends AppCompatActivity
             float distance = (locationA.distanceTo(locationB)/1000);
             String zone_distance = String.valueOf(distance);
 
-            Log.d("Distance", "Distance = " + zone_distance + "km");
-
             Intent zoneWindow = new Intent(beginnerActivity.this, ZoneActivity.class);
             zoneWindow.putExtra("zoneDistance", zone_distance);
             startActivity(zoneWindow);
@@ -263,8 +219,6 @@ public class beginnerActivity extends AppCompatActivity
             float distance = (locationA.distanceTo(locationB)/1000);
             String trans_distance = String.valueOf(distance);
 
-            Log.d("Distance", "Distance = " + trans_distance + "km");
-
             Intent transWindow = new Intent(beginnerActivity.this, transActivity.class);
             transWindow.putExtra("transDistance", trans_distance);
             startActivity(transWindow);
@@ -283,8 +237,6 @@ public class beginnerActivity extends AppCompatActivity
             float distance = (locationA.distanceTo(locationB)/1000);
             String shred_distance = String.valueOf(distance);
 
-            Log.d("Distance", "Distance = " + shred_distance + "km");
-
             Intent shredWindow = new Intent(beginnerActivity.this, shredActivity.class);
             shredWindow.putExtra("shredDistance", shred_distance);
             startActivity(shredWindow);
@@ -300,8 +252,6 @@ public class beginnerActivity extends AppCompatActivity
 
             float distance = (locationA.distanceTo(locationB)/1000);
             String tx_distance = String.valueOf(distance);
-
-            Log.d("Distance", "Distance = " + tx_distance + "km");
 
             Intent txWindow = new Intent(beginnerActivity.this, txActivity.class);
             txWindow.putExtra("txDistance", tx_distance);
@@ -320,8 +270,6 @@ public class beginnerActivity extends AppCompatActivity
 
             float distance = (locationA.distanceTo(locationB)/1000);
             String factory_distance = String.valueOf(distance);
-
-            Log.d("Distance", "Distance = " + factory_distance + "km");
 
             Intent factoryWindow = new Intent(beginnerActivity.this, factoryActivity.class);
             factoryWindow.putExtra("factoryDistance", factory_distance);
